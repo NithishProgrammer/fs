@@ -17,6 +17,13 @@ imgInput.addEventListener('change', async () => {
   const img = new Image();
   img.src = URL.createObjectURL(file);
 
+  if (file.size < 1240*60){
+    detectBtn.style.cursor = "none"
+    detectBtn.style.background = 'grey'
+    detectBtn.innerText = "File min. size = 60KB"
+    detectBtn.disabled = true;
+  }
+
 
 
   img.onload = () => {
