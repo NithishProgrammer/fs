@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- TensorFlow.js & COCO-SSD -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+
+  <title>FridgeScan Recipe Generator</title>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold text-gray-800">FridgeScan Recipe Generator</h1>
+      <p class="mt-2 text-gray-600">Upload a photo of your fridge and get recipe ideas instantly.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-6 flex-grow">
+    <!-- Upload & Detect Section -->
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <div class="flex flex-col md:flex-row md:items-center md:space-x-4">
+        <input
+          type="file"
+          id="img-upload"
+          accept="image/*"
+          class="block w-full md:w-auto text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-blue-600 file:text-white hover:file:bg-blue-700 mb-4 md:mb-0"
+        />
+        <button
+          id="detect-btn"
+          disabled
+          class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+        >
+          Detect Ingredients
+        </button>
+      </div>
+      <div class="mt-4">
+        <canvas id="preview" class="w-full h-auto border rounded"></canvas>
+      </div>
+    </section>
+
+    <!-- Recipes Grid -->
+    <section id="recipes" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Recipe cards will be injected here -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white shadow mt-auto">
+    <div class="container mx-auto px-4 py-4 text-center text-gray-500 text-sm">
+      &copy; 2025 FridgeScan. All rights reserved.
+    </div>
+  </footer>
+
+
+<style>
+
+::file-selector-button {
+    border: 0;
+  border: 1px solid rgb(131, 128, 128);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgb(68, 111, 252);
+}
+
+#img-upload{
+
+    background: rgb(188, 205, 231);
+    color: rgb(77, 76, 76);
+    border-radius: 6px;
+    border: 0;
+}
+</style>
+
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
