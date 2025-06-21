@@ -24,6 +24,14 @@ imgInput.addEventListener('change', async () => {
     detectBtn.disabled = true;
   }
 
+  else{
+
+    detectBtn.disabled = false;
+    detectBtn.style.backgroundColor = '#0000FF'
+    detectBtn.style.cursor = 'pointer'
+    detectBtn.innerText = "Recipe.."
+  }
+
 
 
   img.onload = () => {
