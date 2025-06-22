@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Upload Image (summa.html)</title>
+</head>
+<body>
+  <h1>Upload an Image</h1>
+  <form id="uploadForm">
+    <input type="file" id="fileInput" name="file" accept="image/*" required>
+    <button type="submit">Upload</button>
+  </form>
+  <pre id="status"></pre>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const file = document.getElementById('fileInput').files[0];
+      if (!file) return alert('Select a file first');
+
+      const form = new FormData();
+      form.append('file', file);
+
+      const status = document.getElementById('status');
+      status.textContent = 'Uploading…';
+
+      try {
+        const res = await fetch('http://localhost:5000/upload', {
+          method: 'POST',
+          body: form
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || JSON.stringify(data));
+        status.textContent = `✅ Saved as ${data.filename}`;
+      } catch (err) {
+        status.textContent = '❌ Error: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
